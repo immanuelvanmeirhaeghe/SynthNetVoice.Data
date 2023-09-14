@@ -1,0 +1,150 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Edge\**" />
+    <Compile Remove="Fallout4Data\Archive2\**" />
+    <Compile Remove="Fallout4Data\Scripts\**" />
+    <Compile Remove="VamData\**" />
+    <EmbeddedResource Remove="Edge\**" />
+    <EmbeddedResource Remove="Fallout4Data\Archive2\**" />
+    <EmbeddedResource Remove="Fallout4Data\Scripts\**" />
+    <EmbeddedResource Remove="VamData\**" />
+    <None Remove="Edge\**" />
+    <None Remove="Fallout4Data\Archive2\**" />
+    <None Remove="Fallout4Data\Scripts\**" />
+    <None Remove="VamData\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Fallout4Data\ActorVoiceTypes.txt" />
+    <None Remove="Fallout4Data\BookExport - Full Text.txt" />
+    <None Remove="Fallout4Data\Codsworth.txt" />
+    <None Remove="Fallout4Data\Descriptions.txt" />
+    <None Remove="Fallout4Data\Dialogs.txt" />
+    <None Remove="Fallout4Data\DialogueExport.txt" />
+    <None Remove="Fallout4Data\FactionRankNames.txt" />
+    <None Remove="Fallout4Data\Names.txt" />
+    <None Remove="Fallout4Data\QuestObjectives.txt" />
+    <None Remove="Fallout4Data\QuestStages.txt" />
+    <None Remove="Fallout4Data\RelationshipData.txt" />
+    <None Remove="Fallout4Data\Topics.txt" />
+    <None Remove="GreenHellData\SystemInstructions.txt" />
+    <None Remove="GreenHellData\UserInstructions.txt" />
+    <None Remove="Instructions\Instructions-fallout4.txt" />
+    <None Remove="Instructions\Instructions-vam.txt" />
+    <None Remove="Instructions\SystemInstructions.txt" />
+    <None Remove="Logs\log.html" />
+    <None Remove="Voices\f4_microsoft_zira_desktop\dataset_metadata.json" />
+    <None Remove="Voices\f4_microsoft_zira_desktop\metadata.csv" />
+    <None Remove="Voices\f4_microsoft_zira_desktop\wavs\000000.wav" />
+    <None Remove="Voices\f4_microsoft_zira_desktop\wavs\000001.wav" />
+    <None Remove="Voices\f4_microsoft_zira_desktop\wavs\000002.wav" />
+    <None Remove="Voices\f4_microsoft_zira_desktop\wavs\000003.wav" />
+    <None Remove="Voices\f4_microsoft_zira_desktop\wavs\000004.wav" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Logs\log.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Fallout4Data\ActorVoiceTypes.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Fallout4Data\BookExport - Full Text.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Fallout4Data\Codsworth.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Fallout4Data\Descriptions.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Fallout4Data\Dialogs.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Fallout4Data\DialogueExport.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Fallout4Data\FactionRankNames.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Fallout4Data\Names.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Fallout4Data\QuestObjectives.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Fallout4Data\QuestStages.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Fallout4Data\RelationshipData.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Fallout4Data\Topics.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Fallout4Data\SystemInstructions.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Fallout4Data\UserInstructions.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GreenHellData\SystemInstructions.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GreenHellData\UserInstructions.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.11" />
+    <PackageReference Include="RestSharp" Version="110.2.0" />
+    <PackageReference Include="System.Windows.Extensions" Version="7.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Fallout4Data\Audio\" />
+    <Folder Include="Fallout4Data\VoiceTypes\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="System.Windows.Extensions">
+      <HintPath>..\..\..\Program Files\Microsoft Visual Studio\2022\Community\dotnet\runtime\shared\Microsoft.WindowsDesktop.App\6.0.16\System.Windows.Extensions.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Voices\f4_microsoft_zira_desktop\dataset_metadata.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Voices\f4_microsoft_zira_desktop\metadata.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Voices\f4_microsoft_zira_desktop\wavs\000000.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Voices\f4_microsoft_zira_desktop\wavs\000001.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Voices\f4_microsoft_zira_desktop\wavs\000002.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Voices\f4_microsoft_zira_desktop\wavs\000003.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Voices\f4_microsoft_zira_desktop\wavs\000004.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+</Project>

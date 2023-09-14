@@ -1,0 +1,21 @@
+<?xml version='1.0'?>
+<PapyrusProject xmlns="C:\Program Files (x86)\Steam\steamapps\common\Fallout 4\Papyrus Compiler\PapyrusProject.xsd"
+  Flags="Institute_Papyrus_Flags.flg"
+  Output="D:\Workspaces\VSTS\SynthNetVoice.Data\Fallout4Data\Scripts\Compiled"
+  Optimize="true"
+  Release="true"
+ >
+  <Imports>
+    <Import>C:\Program Files (x86)\Steam\steamapps\common\Fallout 4\Data\Scripts\Source\Base</Import>
+    <Import>C:\Program Files (x86)\Steam\steamapps\common\Fallout 4\Data\Scripts\Source\DLC01</Import>
+    <Import>C:\Program Files (x86)\Steam\steamapps\common\Fallout 4\Data\Scripts\Source\DLC02</Import>
+    <Import>C:\Program Files (x86)\Steam\steamapps\common\Fallout 4\Data\Scripts\Source\DLC03</Import>
+    <Import>C:\Program Files (x86)\Steam\steamapps\common\Fallout 4\Data\Scripts\Source\DLC04</Import>
+    <Import>C:\Program Files (x86)\Steam\steamapps\common\Fallout 4\Data\Scripts\Source\DLC05</Import>
+    <Import>C:\Program Files (x86)\Steam\steamapps\common\Fallout 4\Data\Scripts\Source\DLC06</Import>
+    <Import>C:\Program Files (x86)\Steam\steamapps\common\Fallout 4\Data\Libs</Import>
+  </Imports>
+  <Scripts>    
+    <Script>D:\Workspaces\VSTS\SynthNetVoice.Data\Fallout4Data\Scripts\MyAPI.psc</Script>
+  </Scripts>
+</PapyrusProject>

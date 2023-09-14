@@ -1,0 +1,17 @@
+{
+    "version": "3.0",
+    "modelVersion": "3.0",
+    "modelType": "xVAPitch",
+    "author": "[DRLE]Immaanuel",
+    "license": "",
+    "lang": "en",
+    "games": [
+        {
+            "gameId": "fallout 4",
+            "voiceId": "f4_microsoft_zira_desktop",
+            "voiceName": "Microsoft Zira Desktop",
+            "resemblyzer": [],
+            "gender": "female"
+        }
+    ]
+}
