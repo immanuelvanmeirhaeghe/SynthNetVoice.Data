@@ -2,15 +2,8 @@
 
 namespace SynthNetVoice.Data.Models
 {
-    public class VoiceDBContext : DbContext
+    public class VoiceDBContext(DbContextOptions<VoiceDBContext> options) : DbContext(options)
     {
-
-        public VoiceDBContext(DbContextOptions<VoiceDBContext> options)
-        : base(options)
-        {
-            
-        }
-
         public DbSet<GameInfo> GameInfo { get; set; } = null!;
 
     }

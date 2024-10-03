@@ -1,7 +1,7 @@
-﻿using SynthNetVoice.Data.Models;
+﻿using RestSharp;
+using SynthNetVoice.Data.Models;
 using System.IO;
 using System.Text;
-using System.Xml.Linq;
 
 namespace SynthNetVoice.Data.Instructions
 {
@@ -24,12 +24,12 @@ namespace SynthNetVoice.Data.Instructions
         /// <param name="systemInstructionsFileName">Optional file with instructions</param>
         /// <returns>System instructions</returns>
         public static async Task<string> GetSystemInstructionsAsync(
-                                                                    string gameName = "",
-                                                                    string? npcName = null,
-                                                                    string? npcNameParameter = null,
-                                                                    string? gameDataPath = null,
-                                                                    string? gameDataPathParameter = null,
-                                                                    string? systemInstructionsFileName = null)
+            string gameName = "",
+            string? npcName = null,
+            string? npcNameParameter = null,
+            string? gameDataPath = null,
+            string? gameDataPathParameter = null,
+            string? systemInstructionsFileName = null)
         {
             string fromSystem = string.Empty;
             try
@@ -78,6 +78,17 @@ namespace SynthNetVoice.Data.Instructions
                             fromSystem = File.ReadAllText(vpath).Replace(vpathParameter, vdataPath).Replace(vnameParameter, vname);
                             break;
                         default:
+                            GetDefaultSystemInstruction(npcName,
+                                           npcNameParameter,
+                                           gameDataPath,
+                                           gameDataPathParameter,
+                                           systemInstructionsFileName,
+                                           out string dname,
+                                           out string dnameParameter,
+                                           out string ddataPath,
+                                           out string dpathParameter,
+                                           out string dpath);
+                            fromSystem = File.ReadAllText(dpath).Replace(dpathParameter, ddataPath).Replace(dnameParameter, dname);
                             break;
                     }                   
                     return fromSystem;
@@ -92,16 +103,37 @@ namespace SynthNetVoice.Data.Instructions
             }
         }
 
-        private static void GetFallout4SystemInstruction(string? npcName,
-                                                         string? npcNameParameter,
-                                                         string? gameDataPath,
-                                                         string? gameDataPathParameter,
-                                                         string? systemInstructionsFileName,
-                                                         out string name,
-                                                         out string nameParameter,
-                                                         out string dataPath,
-                                                         out string pathParameter,
-                                                         out string path)
+        private static void GetDefaultSystemInstruction(
+            string? npcName,
+            string? npcNameParameter,
+            string? gameDataPath,
+            string? gameDataPathParameter,
+            string? systemInstructionsFileName,
+            out string name,
+            out string nameParameter,
+            out string dataPath,
+            out string pathParameter,
+            out string path)
+        {
+            name = npcName ?? InstructionsManagerHelpers.DefaultGame.DefaultNpcName;
+            nameParameter = npcNameParameter ?? InstructionsManagerHelpers.DefaultGame.DefaultNpcNameParameter;
+            dataPath = gameDataPath ?? InstructionsManagerHelpers.DefaultGame.DefaultGameDataPath;
+            pathParameter = gameDataPathParameter ?? InstructionsManagerHelpers.DefaultGame.DefaultGameDataPathParameter;
+            string fileName = systemInstructionsFileName ?? InstructionsManagerHelpers.DefaultGame.DefaultSystemInstructionsFileName;
+            path = Path.Combine(InstructionsManagerHelpers.DefaultGame.DefaultPath, dataPath, fileName);
+        }
+
+        private static void GetFallout4SystemInstruction(
+            string? npcName,
+            string? npcNameParameter,
+            string? gameDataPath,
+            string? gameDataPathParameter,
+            string? systemInstructionsFileName,
+            out string name,
+            out string nameParameter,
+            out string dataPath,
+            out string pathParameter,
+            out string path)
         {
             name = npcName ?? InstructionsManagerHelpers.Fallout4.DefaultNpcName;
             nameParameter = npcNameParameter ?? InstructionsManagerHelpers.Fallout4.DefaultNpcNameParameter;
@@ -111,16 +143,17 @@ namespace SynthNetVoice.Data.Instructions
             path = Path.Combine(InstructionsManagerHelpers.Fallout4.DefaultPath, dataPath, fileName);
         }
 
-        private static void GetGreenHellSystemInstruction(string? npcName,
-                                                          string? npcNameParameter,
-                                                          string? gameDataPath,
-                                                          string? gameDataPathParameter,
-                                                          string? systemInstructionsFileName,
-                                                          out string name,
-                                                          out string nameParameter,
-                                                          out string dataPath,
-                                                          out string pathParameter,
-                                                          out string path)
+        private static void GetGreenHellSystemInstruction(
+            string? npcName,
+            string? npcNameParameter,
+            string? gameDataPath,
+            string? gameDataPathParameter,
+            string? systemInstructionsFileName,
+            out string name,
+            out string nameParameter,
+            out string dataPath,
+            out string pathParameter,
+            out string path)
         {
             name = npcName ?? InstructionsManagerHelpers.GreenHell.DefaultNpcName;
             nameParameter = npcNameParameter ?? InstructionsManagerHelpers.GreenHell.DefaultNpcNameParameter;
@@ -130,16 +163,17 @@ namespace SynthNetVoice.Data.Instructions
             path = Path.Combine(InstructionsManagerHelpers.GreenHell.DefaultPath, dataPath, fileName);
         }
 
-        private static void GetVamXSystemInstruction(string? npcName,
-                                                         string? npcNameParameter,
-                                                         string? gameDataPath,
-                                                         string? gameDataPathParameter,
-                                                         string? systemInstructionsFileName,
-                                                         out string name,
-                                                         out string nameParameter,
-                                                         out string dataPath,
-                                                         out string pathParameter,
-                                                         out string path)
+        private static void GetVamXSystemInstruction(
+            string? npcName,
+            string? npcNameParameter,
+            string? gameDataPath,
+            string? gameDataPathParameter,
+            string? systemInstructionsFileName,
+            out string name,
+            out string nameParameter,
+            out string dataPath,
+            out string pathParameter,
+            out string path)
         {
             name = npcName ?? InstructionsManagerHelpers.VamX.DefaultNpcName;
             nameParameter = npcNameParameter ?? InstructionsManagerHelpers.VamX.DefaultNpcNameParameter;
@@ -161,12 +195,12 @@ namespace SynthNetVoice.Data.Instructions
         /// <param name="userInstructionsFileName">Optional file with instructions</param>
         /// <returns>User instructions</returns>
         public static async Task<string> GetUserInstructionsAsync(
-                                                 string gameName = "",
-                                                 string? npcName = null,
-                                                 string? npcNameParameter = null,
-                                                 string? gameDataPath = null,
-                                                 string? gameDataPathParameter = null,
-                                                 string? userInstructionsFileName = null)
+            string gameName = "",
+            string? npcName = null,
+            string? npcNameParameter = null,
+            string? gameDataPath = null,
+            string? gameDataPathParameter = null,
+            string? userInstructionsFileName = null)
         {
             string fromUser = string.Empty;           
             try
@@ -232,17 +266,18 @@ namespace SynthNetVoice.Data.Instructions
             }
         }
 
-        private static void GetGreenHellUserInstructions(string? npcName,
-                                                         string? npcNameParameter,
-                                                         string? gameDataPath,
-                                                         string? gameDataPathParameter,
-                                                         string? userInstructionsFileName,
-                                                         out string ghname,
-                                                         out string ghfileName,
-                                                         out string ghnameParameter,
-                                                         out string ghdataPath,
-                                                         out string ghpathParameter,
-                                                         out string ghpath)
+        private static void GetGreenHellUserInstructions(
+            string? npcName,
+            string? npcNameParameter,
+            string? gameDataPath,
+            string? gameDataPathParameter,
+            string? userInstructionsFileName,
+            out string ghname,
+            out string ghfileName,
+            out string ghnameParameter,
+            out string ghdataPath,
+            out string ghpathParameter,
+            out string ghpath)
         {
             ghname = npcName ?? InstructionsManagerHelpers.GreenHell.DefaultNpcName;
             ghnameParameter = npcNameParameter ?? InstructionsManagerHelpers.GreenHell.DefaultNpcNameParameter;
@@ -252,17 +287,18 @@ namespace SynthNetVoice.Data.Instructions
             ghpath = Path.Combine(InstructionsManagerHelpers.GreenHell.DefaultPath, ghdataPath, ghfileName);
         }
 
-        private static void GetFallout4UserInstruction(string? npcName,
-                                                          string? npcNameParameter,
-                                                          string? gameDataPath,
-                                                          string? gameDataPathParameter,
-                                                          string? userInstructionsFileName,
-                                                          out string dataPath,
-                                                          out string fileName,
-                                                          out string pathParameter,
-                                                          out string nameParameter,
-                                                          out string name,
-                                                           out string path)
+        private static void GetFallout4UserInstruction(
+            string? npcName,
+            string? npcNameParameter,
+            string? gameDataPath,
+            string? gameDataPathParameter,
+            string? userInstructionsFileName,
+            out string dataPath,
+            out string fileName,
+            out string pathParameter,
+            out string nameParameter,
+            out string name,
+            out string path)
         {
             name = npcName ?? InstructionsManagerHelpers.Fallout4.DefaultNpcName;
             nameParameter = npcNameParameter ?? InstructionsManagerHelpers.Fallout4.DefaultNpcNameParameter;
@@ -272,17 +308,18 @@ namespace SynthNetVoice.Data.Instructions
             path = Path.Combine(InstructionsManagerHelpers.Fallout4.DefaultPath, dataPath, fileName);
         }
 
-        private static void GetVamXUserInstructions(string? npcName,
-                                                  string? npcNameParameter,
-                                                  string? gameDataPath,
-                                                  string? gameDataPathParameter,
-                                                  string? userInstructionsFileName,
-                                                  out string dataPath,
-                                                  out string fileName,
-                                                  out string pathParameter,
-                                                  out string nameParameter,
-                                                  out string name,
-                                                   out string path)
+        private static void GetVamXUserInstructions(
+            string? npcName,
+            string? npcNameParameter,
+            string? gameDataPath,
+            string? gameDataPathParameter,
+            string? userInstructionsFileName,
+            out string dataPath,
+            out string fileName,
+            out string pathParameter,
+            out string nameParameter,
+            out string name,
+            out string path)
         {
             name = npcName ?? InstructionsManagerHelpers.VamX.DefaultNpcName;
             nameParameter = npcNameParameter ?? InstructionsManagerHelpers.VamX.DefaultNpcNameParameter;
@@ -342,6 +379,15 @@ namespace SynthNetVoice.Data.Instructions
                         break;
 
                     default:
+                        name = npcName ?? InstructionsManagerHelpers.DefaultGame.DefaultNpcName;
+                        string dsystemInstructions = await GetSystemInstructionsAsync(gameName.Trim().ToLower(), name);
+                        instructionsBuilder.AppendLine(dsystemInstructions);
+                        instruction.FromSystem = dsystemInstructions;
+
+                        string duserInstructions = await GetUserInstructionsAsync(gameName.Trim().ToLower(), name);
+                        instructionsBuilder.AppendLine(duserInstructions);
+                        instruction.FromUser = duserInstructions;
+
                         break;
                 }
                 return instruction;

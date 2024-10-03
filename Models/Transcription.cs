@@ -1,6 +1,5 @@
 ﻿using System.Media;
 using System.Text.Json.Serialization;
-using System.Windows;
 namespace SynthNetVoice.Data.Models
 {
     /// <summary>
